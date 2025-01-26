@@ -16,15 +16,18 @@ export default function App() {
           const genderResponse = await fetch(`https://api.genderize.io/?name=${name}`);
           const ageData = await ageResponse.json();
           const genderData = await genderResponse.json();
-          setAge(ageData.age);
-          setGender(genderData.gender);
 
-          if (ageData.age && genderData.gender) {
-            alert(
-              `Name: ${name}, Predicted Age: ${ageData.age}, Predicted Gender: ${genderData.gender}`
-            );
-          } else {
-            alert("Unable to predict age or gender.");
+
+          if(ageData.age){
+            setAge(ageData.age);
+          }else{
+          alert("Unable to predict age.");
+        }
+          
+          if(genderData.gender){
+            setGender(genderData.gender);
+          }else{
+            alert("Unable to predict  gender.");
           }
     } catch (e) {
           console.error("Error fetching predictions:", e);
